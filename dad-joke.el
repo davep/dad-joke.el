@@ -23,7 +23,7 @@
 (defconst dad-joke-server-url "http://icanhazdadjoke.com/"
   "URL for the dad joke server.")
 
-(defconst dad-joke-user-agent "dad-joke.el"
+(defconst dad-joke-user-agent "dad-joke.el (https://github.com/davep/dad-joke.el)"
   "User agent to send to the dad joke server.")
 
 (defun dad-joke-get ()
