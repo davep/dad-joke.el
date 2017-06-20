@@ -36,7 +36,10 @@
 
 ;;;###autoload
 (defun dad-joke (&optional insert)
-  "Display a dad joke in the minibuffer."
+  "Display a dad joke in the minibuffer.
+
+If INSERT is non-nil the joke will be inserted into the current
+buffer rather than shown in the minibuffer."
   (interactive "P")
   (let ((joke (dad-joke-get)))
     (if insert
