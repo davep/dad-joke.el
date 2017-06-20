@@ -32,6 +32,7 @@
       (let ((url-mime-accept-string "text/plain")
             (url-request-extra-headers `(("User-Agent" . ,dad-joke-user-agent))))
         (url-retrieve-synchronously dad-joke-server-url t t))
+    (set-buffer-multibyte t)
     (buffer-substring-no-properties (point) (point-max))))
 
 ;;;###autoload
