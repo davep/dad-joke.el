@@ -32,13 +32,16 @@
       (let ((url-mime-accept-string "text/plain")
             (url-request-extra-headers `(("User-Agent" . ,dad-joke-user-agent))))
         (url-retrieve-synchronously dad-joke-server-url t t))
-    (buffer-substring (point) (point-max))))
+    (buffer-substring-no-properties (point) (point-max))))
 
 ;;;###autoload
-(defun dad-joke ()
+(defun dad-joke (&optional insert)
   "Display a dad joke in the minibuffer."
-  (interactive)
-  (message (dad-joke-get)))
+  (interactive "P")
+  (let ((joke (dad-joke-get)))
+    (if insert
+        (insert joke)
+      (message joke))))
 
 (provide 'dad-joke)
 
