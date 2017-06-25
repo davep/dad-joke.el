@@ -1,5 +1,8 @@
 # dad-joke.el
 
+[![MELPA Stable](https://stable.melpa.org/packages/dad-joke-badge.svg)](https://stable.melpa.org/#/dad-joke)
+[![MELPA](https://melpa.org/packages/dad-joke-badge.svg)](https://melpa.org/#/dad-joke)
+
 Get/display dad jokes in GNU Emacs.
 
 # Commentary:
