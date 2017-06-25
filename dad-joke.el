@@ -20,6 +20,8 @@
 
 ;;; Code:
 
+(require 'url-vars)
+
 (defconst dad-joke-server-url "http://icanhazdadjoke.com/"
   "URL for the dad joke server.")
 
