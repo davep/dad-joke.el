@@ -46,11 +46,11 @@ If INSERT is non-nil the joke will be inserted into the current
 buffer rather than shown in the minibuffer."
   (interactive "P")
   (let ((joke (dad-joke-get)))
-    (if (and joke (not (zerop (length joke))))
-        (if insert
-            (insert joke)
-          (message joke))
-      (error "I didn't get the joke! :-("))))
+    (if (zerop (length joke))
+        (error "I didn't get the joke! :-(")
+      (if insert
+          (insert joke)
+        (message "%s" joke)))))
 
 (provide 'dad-joke)
 
