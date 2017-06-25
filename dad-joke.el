@@ -22,7 +22,7 @@
 
 (require 'url-vars)
 
-(defconst dad-joke-server-url "http://icanhazdadjoke.com/"
+(defconst dad-joke-server-url "https://icanhazdadjoke.com/"
   "URL for the dad joke server.")
 
 (defconst dad-joke-user-agent "dad-joke.el (https://github.com/davep/dad-joke.el)"
