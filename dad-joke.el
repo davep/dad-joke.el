@@ -20,7 +20,9 @@
 
 ;;; Code:
 
-(defconst dad-joke-server-url "http://icanhazdadjoke.com/"
+(require 'url-vars)
+
+(defconst dad-joke-server-url "https://icanhazdadjoke.com/"
   "URL for the dad joke server.")
 
 (defconst dad-joke-user-agent "dad-joke.el (https://github.com/davep/dad-joke.el)"
@@ -28,12 +30,13 @@
 
 (defun dad-joke-get ()
   "Acquire a dad joke from the dad joke server."
-  (with-current-buffer
-      (let ((url-mime-accept-string "text/plain")
-            (url-request-extra-headers `(("User-Agent" . ,dad-joke-user-agent))))
-        (url-retrieve-synchronously dad-joke-server-url t t))
-    (set-buffer-multibyte t)
-    (buffer-substring-no-properties (point) (point-max))))
+  (let* ((url-mime-accept-string "text/plain")
+         (url-user-agent dad-joke-user-agent)
+         (buffer (url-retrieve-synchronously dad-joke-server-url t t)))
+    (when buffer
+      (with-current-buffer buffer
+        (set-buffer-multibyte t)
+        (buffer-substring-no-properties (point) (point-max))))))
 
 ;;;###autoload
 (defun dad-joke (&optional insert)
@@ -43,11 +46,11 @@ If INSERT is non-nil the joke will be inserted into the current
 buffer rather than shown in the minibuffer."
   (interactive "P")
   (let ((joke (dad-joke-get)))
-    (if (and joke (not (zerop (length joke))))
-        (if insert
-            (insert joke)
-          (message joke))
-      (error "I didn't get the joke! :-("))))
+    (if (zerop (length joke))
+        (error "I didn't get the joke! :-(")
+      (if insert
+          (insert joke)
+        (message "%s" joke)))))
 
 (provide 'dad-joke)
 
