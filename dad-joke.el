@@ -31,7 +31,7 @@
 (defun dad-joke-get ()
   "Acquire a dad joke from the dad joke server."
   (let* ((url-mime-accept-string "text/plain")
-         (url-user-agent dad-joke-user-agent)
+         (url-request-extra-headers `(("User-Agent" . ,dad-joke-user-agent)))
          (buffer (url-retrieve-synchronously dad-joke-server-url t t)))
     (when buffer
       (with-current-buffer buffer
