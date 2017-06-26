@@ -2,7 +2,7 @@
 ;; Copyright 2017 by Dave Pearson <davep@davep.org>
 
 ;; Author: Dave Pearson <davep@davep.org>
-;; Version: 1.1
+;; Version: 1.2
 ;; Keywords: games
 ;; URL: https://github.com/davep/dad-joke.el
 ;; Package-Requires: ((emacs "24"))
