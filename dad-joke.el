@@ -45,7 +45,9 @@
     (when buffer
       (with-current-buffer buffer
         (set-buffer-multibyte t)
-        (buffer-substring-no-properties (point) (point-max))))))
+        (setf (point) (point-min))
+        (when (search-forward-regexp "^$" nil t)
+          (buffer-substring-no-properties (1+ (point)) (point-max)))))))
 
 ;;;###autoload
 (defun dad-joke (&optional insert)
