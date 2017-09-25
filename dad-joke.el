@@ -41,13 +41,10 @@
   "Acquire a dad joke from the dad joke server."
   (let* ((url-mime-accept-string "text/plain")
          (url-request-extra-headers `(("User-Agent" . ,dad-joke-user-agent)))
-         (buffer (url-retrieve-synchronously dad-joke-server-url t t)))
-    (when buffer
-      (with-current-buffer buffer
-        (set-buffer-multibyte t)
-        (setf (point) (point-min))
-        (when (search-forward-regexp "^$" nil t)
-          (buffer-substring-no-properties (1+ (point)) (point-max)))))))
+         (url-show-status nil))
+    (with-temp-buffer
+      (url-insert-file-contents dad-joke-server-url)
+      (buffer-string))))
 
 ;;;###autoload
 (defun dad-joke (&optional insert)
